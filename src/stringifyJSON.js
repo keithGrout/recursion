@@ -4,4 +4,12 @@
 // but you don't so you're going to have to write it from scratch:
 var stringifyJSON = function (obj) {
   // your code goes here
+  // base case
+  
+  
+  
+  // recursive case
+  
+  
+  
 };
