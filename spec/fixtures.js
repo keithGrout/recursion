@@ -1,4 +1,4 @@
-var stringifiableValues = [
+var arrayWithValidElements = [
   9,
   null,
   true,
