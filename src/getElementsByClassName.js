@@ -5,21 +5,26 @@
 
 // But instead we're going to implement it from scratch:
   
-  var getElementsByClassName = function(className) {
-  var result = [];
+var getElementsByClassName = function(className) {
+  
+	var body = document.body;
+	var elements = [];
+	
+	function walkDom(node, className){
+	  if(node.nodeType === document.ELEMENT_NODE){ 
+		if(node.classList.contains(className)){
+	  		elements.push(node);
+	  	}
+	  	for(var i = 0; i < node.childNodes.length; i++){  	
+	  		walkDom(node.childNodes[i], className);
+	  	}
+	  }
+	  
+	}
 
-  function inspect(element) {
-    var children = element.children;
-    for(var i = 0; i < children.length; i++) {
-      if(children[i].classList.contains(className)) {
-        result.push(children[i]);
-      }
-      if(children[i].hasChildNodes) inspect(children[i]);
-    }
-  }
-
-  inspect(document);
-  return result;
+	walkDom(body, className);
+	return elements;
+	
   
 };
 
