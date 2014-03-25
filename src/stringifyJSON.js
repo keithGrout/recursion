@@ -5,11 +5,13 @@
 var stringifyJSON = function (obj) {
 		
 	if(typeof obj === 'string') obj = '"' + obj + '"';
-	if(typeof obj === 'number' || typeof obj === 'boolean' || obj === null ) {  obj = '' + obj;}
+	if(typeof obj === 'number' || typeof obj === 'boolean' || obj === null ) { obj = '' + obj;}
 	
 	if( Array.isArray(obj) ){
-		obj.map(stringifyJSON);
-	 	obj = '[' + obj + ']';
+		for(var i = 0; i < obj.length; i++){
+	    	obj[i] = stringifyJSON(obj[i]);
+	  	}
+	 	obj = '[' + obj.join() + ']';
 	}else if(typeof obj === 'object' && obj !== null){
 		if(Object.keys(obj).length === 0 ){
 			obj = '{}';
