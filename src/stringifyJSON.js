@@ -9,11 +9,23 @@ var stringifyJSON = function (obj) {
  
   if(typeof obj === "string") {return '"'+ obj + '"'; }
   
+  /* BROKEN
+  if( Array.isArray(obj) ){
+	for(var i = 0; i < obj.length; i++){
+		obj[i] = stringifyJSON(obj[i]);
+	}
+    return '[' + obj + ']';
+  }
+  */
+  
   // recursive case
   if( Array.isArray(obj) ){
     obj = obj.map(stringifyJSON);
     return '[' + obj + ']';
   }
+  
+  
+
   
  
   if (typeof obj === 'object') {						
